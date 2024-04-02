@@ -1,0 +1,16 @@
+[Unit]
+Description=Fake traffic generator for CRC API
+After=network.target
+
+[Service]
+Type=oneshot
+User=crcapi
+Group=crcapi
+WorkingDirectory=/srv/crcapi/
+ExecStart=/srv/crcapi/.venv/bin/locust \
+    --config /srv/crcapi/gunicorn_config.py
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

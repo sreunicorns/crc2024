@@ -1,0 +1,9 @@
+bind = "127.0.0.1:8080"
+backlog = 2048
+workers = 1
+worker_class = "uvicorn.workers.UvicornWorker"
+timeout = 30
+keepalive = 2
+# daemon = True
+loglevel = "info"
+accesslog = "-"

@@ -1,0 +1,18 @@
+[Unit]
+Description=CRC API
+After=network.target
+
+[Service]
+Type=notify
+User=crcapi
+Group=crcapi
+WorkingDirectory=/srv/crcapi/app
+ExecStart=/srv/crcapi/.venv/bin/gunicorn main:app \
+    -c /srv/crcapi/gunicorn_config.py
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
